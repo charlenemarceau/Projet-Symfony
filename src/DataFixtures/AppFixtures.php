@@ -4,13 +4,23 @@ namespace App\DataFixtures;
 
 use DateTime;
 use App\Entity\Menu;
+use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class AppFixtures extends Fixture
 {
+    private $passwordEncoder;
+
+    function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $categories = ['Vegan', 'Végétarien', 'Pescovégétarien'];
@@ -31,6 +41,36 @@ class AppFixtures extends Fixture
             $manager->persist($menu);
             array_push($tabObjMenu,$menu);
         }
+
+            // $product = new Product();
+        // $manager->persist($product);
+            $user1 = new User;
+            $pwdcripted = $this->passwordEncoder->encodePassword($user1, 'secret1');
+            $user1
+                -> setEmail('user1@symfony.fr')
+                -> setFirstname('Julien')
+                -> setLastName('Doe')
+                -> setLastName('Doe')
+                -> setRoles(['ROLE_USER'])
+                -> setPassword($pwdcripted);
+            $manager->persist($user1);
+
+
+            $user2 = new User;
+            $pwdcripted = $this->passwordEncoder->encodePassword($user2, 'secret2');
+            $user2
+                -> setEmail('user2@symfony.fr')
+                -> setFirstname('Lucie')
+                -> setLastName('Doe')
+                -> setRoles(['ROLE_USER'])
+                -> setPassword($pwdcripted);
+                $manager->persist($user2);
+
+
+            $manager->flush();
+        
+
+
         $recipe = new Recipe;
         $recipe
             ->setName('Galette de pommes de terre')
@@ -51,15 +91,13 @@ class AppFixtures extends Fixture
             ->setCreatedAt(new DateTime('Europe/Paris'))
             ->setCategory($tabObjCategory[0])
             ->setMenu($tabObjMenu[0])
-            ->setImageFile('recette.jpeg')
-            ->setCatchline('blablabla');
+            ->setCatchline('blablabla')
+            ->setUser($user1)
+            ->setImageFile();
         $manager->persist($recipe);
 
         $manager->flush();
 
+        
     }
-
-    // $product = new Product();
-    // $manager->persist($product);
-
 }
