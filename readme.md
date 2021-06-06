@@ -60,4 +60,4 @@ Une application avec :
 3. Migrations et Fixtures
 4. MakeCrud
 5. Vich
-6. 
+6. Liip bundle thumbnails

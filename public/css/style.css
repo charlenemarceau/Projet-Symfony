@@ -13,15 +13,27 @@
 
 .recipe-section {
     text-align: center;
-    margin: 8rem;
-}
-.recipe-img {
-    width: 25vw!important;
 }
 
-.recipe-box {
+/* .recipe-box {
     padding: 8px 5px;
     margin: 10px;
     box-shadow: 0 10px 5px rgba(0, 0, 0, 0.381);
     border-radius: 5px;
+} */
+
+/* .vich-image .form-check {
+    margin-top: 3px;
+} */
+
+/* .vich-image img {
+    margin-bottom: 2px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.381);;
+} */
+
+.recipe-img:hover {
+    transform: scale(1.050);
+    transition: transform 0.3s ease-out;
 }
+
