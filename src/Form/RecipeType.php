@@ -14,18 +14,19 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('ingredients')
-            ->add('instructions')
-            ->add('cook_time')
-            ->add('catchline')
-            ->add('category')
-            ->add('menu')
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image (JPG ou PNG)',
                 'required' => true,
                 'allow_delete' => true,
                 'download_uri' => false,
-            ]);
+                'imagine_pattern' => 'squared_thumbnail_small',
+            ])
+            ->add('ingredients')
+            ->add('instructions')
+            ->add('cook_time')
+            ->add('catchline')
+            ->add('category')
+            ->add('menu');
     }
 
     public function configureOptions(OptionsResolver $resolver)

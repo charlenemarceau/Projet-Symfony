@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\Timestampable;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\Timestampable;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\HttpFoundation\File\File;
@@ -66,6 +67,8 @@ class Recipe
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="recipe_image", fileNameProperty="imageName")
+     * @Assert\NotNull
+     * @Assert\Image(maxSize="8M")
      * 
      * @var File|null
      */
