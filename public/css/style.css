@@ -1,0 +1,27 @@
+.header {
+    background: url(../img/style/header-symfony.jpeg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 100% center;
+    width: auto;
+    height: 70vh;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe-section {
+    text-align: center;
+    margin: 8rem;
+}
+.recipe-img {
+    width: 25vw!important;
+}
+
+.recipe-box {
+    padding: 8px 5px;
+    margin: 10px;
+    box-shadow: 0 10px 5px rgba(0, 0, 0, 0.381);
+    border-radius: 5px;
+}

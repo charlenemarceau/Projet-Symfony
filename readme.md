@@ -30,7 +30,9 @@ Une application avec :
 - Ici : 
     1. Recette
     2. Catégories 
-    3. User
+    3. Menus
+    4. Picture
+    5. User
 
 ## Modélisation base de données
 - Un diagrammme de classe UML basé sur l'analyse fonctionnelle.
@@ -48,10 +50,14 @@ Une application avec :
    ```
 2. les entités Recette et Catégories et leur relation
    ```bash
-   symfony console make:entity Recipe #(propriétés name, ingredients, instructions, cook_time, createdAt, updatedAt, accroche, picture)
+   symfony console make:entity Recipe #(propriétés name, ingredients, instructions, cook_time, createdAt, accroche)
    symfony console make:entity Category #(name)
    symfony console make:entity Menu #(name)
+   symfony console make:entity Picture #(name, VichBundle)
+   symfony console make:entity User #(username, email, password)
+
    ```
 3. Migrations et Fixtures
 4. MakeCrud
-5. VichBundleUpload
+5. Vich
+6. 
