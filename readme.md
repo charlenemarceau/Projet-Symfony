@@ -61,3 +61,5 @@ Une application avec :
 4. MakeCrud
 5. Vich
 6. Liip bundle thumbnails
+7. Authentification system
+8. 
