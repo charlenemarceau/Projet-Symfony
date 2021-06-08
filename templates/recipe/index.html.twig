@@ -10,15 +10,15 @@
     <h1 class="mb-4 recipes-title text-center mt-5">Les recettes</h1>
 
     <section id="recette" class="recipe-section">
-        {% for row in recipes|batch(2) %}
-            <div class="row mb-5">
+        {% for row in recipes|batch(3) %}
+            <div class="row mb-5 d-flex justify-content-center">
                 {% for recipe in row %}
-                    <div class="col-md-4 justify-content-center">
+                    <div class="col-md-3 m-6">
                         <article class="bg-light rounded shadow recipe-box">
                             <div class="mv-100 overflow-hidden">
                                 <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
                                 {# <img src="{{ asset('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img"> #}
-                                <img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) : asset ('img/recettes/recette.jpeg') | imagine_filter('squared_thumbnail_small')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top">
+                                <img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_medium')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top">
                                 </a>
                                 <h4>{{ recipe.name }} </h4>
                                 <h5>{{ recipe.catchline }}</h5>

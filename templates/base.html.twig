@@ -12,7 +12,9 @@
 
     </head>
     <body>
-
+        {% block flash %}
+        {% include "_flash_messages.html.twig" %}
+        {% endblock %}
         {% block navbar %}
             {% include 'navbar.html.twig' %}
         {% endblock %}

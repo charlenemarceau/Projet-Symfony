@@ -62,4 +62,4 @@ Une application avec :
 5. Vich
 6. Liip bundle thumbnails
 7. Authentification system
-8. 
+8. Mail de confirmation mail

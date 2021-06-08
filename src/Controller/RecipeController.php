@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Entity\Category;
 use App\Form\RecipeType;
-use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RecipeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/recipe")
@@ -40,7 +41,7 @@ class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $janeDoe = $userRepository->findOneBy(['email'=>'user1@symfony.fr']);
-            $recipe->setUser($janeDoe);
+            $recipe->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);
             $entityManager->flush();
@@ -96,5 +97,19 @@ class RecipeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_home');
+    }
+
+    /**
+     * @Route("/category/{id}", name="app_recipe_category")
+     *
+     * @param Category $cat
+     * @return void
+     */
+    public function recipesByCategory(Category $cat) : Response 
+    {
+        return $this->render('/recipe/index.html.twig', [
+            'recipes' => $cat->getRecipes(),
+            'categories' => $this->categories
+        ]);
     }
 }
