@@ -1,34 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipe{% endblock %}
+{% block title %}Recipe
+{% endblock %}
 
 {% block body %}
-    {# <h1>Recipe</h1> #}
+	{# <h1>Recipe</h1> #}
 
-    <div class="row mt-5">
-        <div class="col-md-6 mx-auto">
-            <article>
-                <div class="text-break p-3">
-                    <h1 class="text-center">{{ recipe.name }}</h1>
-                    <img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) : asset ('img/recettes/recette.jpeg') | imagine_filter('squared_thumbnail_small')) }}" alt="{{ recipe.name }}" class="w-100 rounded">
-                    <h3>{{ recipe.catchline }}</h3>
-                    <div class="d-flex">
-                    <p>{{ recipe.ingredients }}</p>
-                    <p>{{ recipe.cookTime }}</p>
+	<div class="row mt-5">
+		<div class="col-md-6 mx-auto">
+			<article>
+				<div class="text-break p-3">
+					<h1 class="text-center mt-3">{{ recipe.name }}</h1>
+					<div class="mt-5 mb-5 d-flex justify-content-center">
+						<img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_large')) }}" alt="{{ recipe.name }}" class="rounded mx-auto">
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<h4>Les ingrédients</h4>
+							<p>{{ recipe.ingredients }}</p>
+						</div>
+						<div class="col-md-4">
+							<h6>Temps de préparation</h6>
+							<p>{{ recipe.cookTime }}</p>
+						</div>
+					</div>
+                    <h4>Préparation</h4>
+                    <div class="text-justify d-flex mt-3">
+					<p>{{ recipe.instructions }}</p>
                     </div>
-                    <p>{{ recipe.instructions }}</p>
-                    <time>Crée le {{ recipe.createdAt ? recipe.createdAt|date('d-m-Y') : '' }} par {{ recipe.user.fullName }} </time>
-                </div>
-            </article>
-        </div>
-    </div>
+                    <div class="text-muted ml-2">
+					<time>Crée le
+						{{ recipe.createdAt ? recipe.createdAt|date('d-m-Y') : '' }}
+						par
+						{{ recipe.user.fullName }}
+					</time>
+                    </div>
+				</div>
+			</article>
+		</div>
+	</div>
 
 
-    <a href="{{ path('app_home') }}">back to list</a>
+	<a href="{{ path('app_home') }}">back to list</a>
 
-    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
-  
+	<a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
 
 
-    {{ include('recipe/_delete_form.html.twig') }}
+	{{ include('recipe/_delete_form.html.twig') }}
 {% endblock %}

@@ -46,10 +46,6 @@ class Recipe
     private $cook_time;
 
 
-    /**
-     * @ORM\Column(type="string", length=500)
-     */
-    private $catchline;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="recipes")
@@ -142,19 +138,6 @@ class Recipe
     }
 
 
-
-
-    public function getCatchline(): ?string
-    {
-        return $this->catchline;
-    }
-
-    public function setCatchline(string $catchline): self
-    {
-        $this->catchline = $catchline;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {

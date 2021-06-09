@@ -1,78 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Veggie&Cook{% endblock %}
+{% block title %}Veggie&Cook
+{% endblock %}
 
 {% block body %}
 
-    <div class="header">
-        <h2>La vrai cuisine est une forme d'art. Un cadeau à partager...</h2>
-    </div>
-    <h1 class="mb-4 recipes-title text-center mt-5">Les recettes</h1>
+<div class="header">
+	<h2>La vrai cuisine est une forme d'art. Un cadeau à partager...</h2>
+</div>
+<h1 class="mb-4 recipes-title text-center mt-5">Les recettes</h1>
 
-    <section id="recette" class="recipe-section">
-        {% for row in recipes|batch(3) %}
-            <div class="row mb-5 d-flex justify-content-center">
-                {% for recipe in row %}
-                    <div class="col-md-3 m-6">
-                        <article class="bg-light rounded shadow recipe-box">
-                            <div class="mv-100 overflow-hidden">
-                                <a href="{{ path('recipe_show', {'id': recipe.id}) }}">
-                                {# <img src="{{ asset('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img"> #}
-                                <img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_medium')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top">
-                                </a>
-                                <h4>{{ recipe.name }} </h4>
-                                <h5>{{ recipe.catchline }}</h5>
-                                <a href="{{ path('recipe_show', {'id': recipe.id}) }}">Plus de détails</a>
-                                <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn" style="background-color: #d6c0d8;">Modifier</a>
-                            </div>
-                        </article>
-                    </div>
-                {% endfor %}
-                </div>
-            </div>
-        {% else %}
-            <p class="h2 text-center">Il n'y a pas encore de recette. <a href ="{{ path('recipe_new') }}"</a>Sois le premier !</p>
-    </section>
-        {% endfor %}
-{% endblock %}
-
-
-
-
-
-
-{# 
-        <div class="container">
-            <div class="row justify-content-center d-flex">
-            
-            </div>
-        </div> #}
-    {#<table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Cook_time</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recipe in recipes %}
-            <tr>
-                <td>{{ recipe.name }}</td>
-                <td>{{ recipe.cookTime }}</td>
-                {# <td>{{ recipe.createdAt ? recipe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ recipe.updatedAt ? recipe.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
-                {# <td>
-                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('recipe_new') }}">Create new</a> #}
+<section id="recette" class="recipe-section">
+	{% for row in recipes|batch(3) %}
+		<div class="row mb-5 d-flex justify-content-center">
+			{% for recipe in row %}
+				<div class="col-md-3 m-6">
+					<article class="bg-light rounded shadow recipe-box">
+						<div class="mv-100 overflow-hidden">
+							<a
+								href="{{ path('recipe_show', {'id': recipe.id}) }}">
+								{# <img src="{{ asset('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img"> #}
+								<img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_medium')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top">
+							</a>
+							<h4>{{ recipe.name }}
+							</h4>
+							<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn mb-3" style="background-color: #d6c0d8;">Plus de détails</a>
+							{# <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn" style="background-color: #d6c0d8;">Modifier</a> #}
+						</div>
+					</article>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% else %}
+	<p class="h2 text-center">Il n'y a pas encore de recette.
+		<aSois{{recipe.name}}</td href="{{ path('recipe_new') }}" </a> le premier !</p> </section> {% endfor %} {% endblock %} {# <div class="container"> <div class="row justify-content-center d-flex"> </div> </div> #} {#<table class="table"> <thead> <tr> <th>Name</th> <th>Cook_time</th> <th>actions</th> </tr> </thead> <tbody> {% for recipe in recipes %} <tr> <td>>
+			<td>{{ recipe.cookTime }}</td>
+			{# <td>{{ recipe.createdAt ? recipe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			                <td>{{ recipe.updatedAt ? recipe.updatedAt|date('Y-m-d H:i:s') : '' }}</td> #}
+			{# <td>
+			                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">show</a>
+			                    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
+			                </td>
+			            </tr>
+			        {% else %}
+			            <tr>
+			                <td colspan="8">no records found</td>
+			            </tr>
+			        {% endfor %}
+			        </tbody>
+			    </table>
+			
+			    <a href="{{ path('recipe_new') }}">Create new</a> #}
