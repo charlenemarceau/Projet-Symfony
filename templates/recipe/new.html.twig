@@ -3,14 +3,15 @@
 {% block title %}Nouvelle recette{% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-6 mx-auto">
-    <h1>Partage une recette</h1>
+    <h1 class="mt-5">Partage une recette</h1>
 
     {{ include('recipe/_form.html.twig') }}
         
         </div>
     </div>
-
-    <a href="{{ path('app_home') }}">back to list</a>
+    <div class="mx-auto">
+    <a href="{{ path('app_home') }}" class="btn mb-3" style="background-color: #d4ffb0;">Retour</a>
+    </div>
 {% endblock %}

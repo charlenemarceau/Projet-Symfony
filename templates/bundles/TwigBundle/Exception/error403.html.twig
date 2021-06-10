@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div class="jumbotron">
+  <h1 class="display-4 mt-5 mx-5">403 Accés interdit</h1>
+  <hr>
+  <p class="lead mx-5">Vous ne pouvez pas accéder à cette page. Veuillez retourner à la page d'accueil.
+  </p>
+    <a class="btn btn-primary mx-5" href="{{ path('app_home') }}">Accueil</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/* font-family: 'Fredericka the Great', cursive;
+font-family: 'Open Sans', sans-serif; 
+font-family: 'Montserrat', sans-serif;*/
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+    background: url(../img/style/header-symfony.jpeg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 100% center;
+    height: 100vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+} 
+
+.header h2 {
+    font-family: 'Montserrat', sans-serif;
+    color:#ec6a00;
+}
+
+
+.navbar-brand {
+    font-family: 'Fredericka the Great', cursive;
+}
+
+.recipes-title {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 50px;
+}
+.recipe-section {
+    text-align: center;
+    width: 100%;
+    background-color: #fffbec;
+}
+.recipe-section-row {
+    width: 100%;
+}
+
+.recipe-show {
+    width: 100%;
+}
+
+.recipe-img:hover {
+    transform: scale(1.050);
+    transition: transform 0.3s ease-out;
+}
+
+.recipe-box {
+    background-color: #fffbec;
+}
+
+.recipe-cat {
+    background-color: #ee8f40;
+    width: fit-content;
+    margin-left: 1px;
+    margin-bottom: 5px;
+}
+
+.mdp {
+    height: 73vh;
+    padding-top: 10vh;
+}
+
+.footer {
+    width: auto;
+    height:25vh;
+    background-color: #d6c0d8;
+    display: flex;
+    align-items: center;
+}
+
+.footer .row {
+    width: 100%;
+}
+.footer li {
+    list-style: none;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer a:hover {
+    color: #4f772d;
+}
+.footer .left {
+    margin-top:20px;
+    margin-left: 5rem;
+}
+.footer .right {
+    display: flex;
+    align-items: center;
+    justify-items: end;
+}

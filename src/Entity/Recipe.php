@@ -53,11 +53,6 @@ class Recipe
      */
     private $category;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Menu::class, inversedBy="recipes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $menu;
 
      /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -151,17 +146,7 @@ class Recipe
         return $this;
     }
 
-    public function getMenu(): ?Menu
-    {
-        return $this->menu;
-    }
 
-    public function setMenu(?Menu $menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
 
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile

@@ -9,7 +9,7 @@
 	<div class="row mt-5">
 		<div class="col-md-6 mx-auto">
 
-			<div class="">
+			<div class="mt-5">
 				<div>
 					<h1>Créer un compte</h1>
 
@@ -28,9 +28,9 @@
 					<div class="my-2">
 						{{ form_row(registrationForm.agreeTerms) }}
 					</div>
-					<button type="submit" class="btn btn-primary mt-3">Register</button>
+					<button type="submit" class="btn btn-primary mt-3">S'inscrire</button>
                     <p class="text-center mt-5 mb-3 text-muted">
-                    Already have an account ? <a href="{{ path( 'app_login')}}">Log in</a></p>
+                    Déjà inscrit ? <a href="{{ path( 'app_login')}}">Connexion</a></p>
 					{{ form_end(registrationForm) }}
 
 				</div>

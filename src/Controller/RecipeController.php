@@ -8,8 +8,10 @@ use App\Form\RecipeType;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
 use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -17,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class RecipeController extends AbstractController
 {
+    
     public function __toString() {
         return $this->name;
     }
@@ -32,6 +35,8 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/new", name="recipe_new", methods={"GET","POST"})
+     * 
+     * @Security("is_granted('ROLE_USER') && user.isVerified()")
      */
     public function new(Request $request, UserRepository $userRepository): Response
     {
@@ -40,7 +45,6 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $janeDoe = $userRepository->findOneBy(['email'=>'user1@symfony.fr']);
             $recipe->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);
@@ -67,6 +71,7 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="recipe_edit", methods={"GET","POST"})
+     * @Security("is_granted('RECIPE_EDIT', recipe)")
      */
     public function edit(Request $request, Recipe $recipe) : Response
     {
@@ -76,6 +81,7 @@ class RecipeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'La recette a bien été modifiée!');
             return $this->redirectToRoute('app_home');
         }
 
@@ -87,6 +93,7 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/{id}", name="recipe_delete", methods={"POST"})
+     * @Security("is_granted('RECIPE_DELETE', recipe)")
      */
     public function delete(Request $request, Recipe $recipe): Response
     {
@@ -95,7 +102,7 @@ class RecipeController extends AbstractController
             $entityManager->remove($recipe);
             $entityManager->flush();
         }
-
+        $this->addFlash('info', 'La recette a bien été supprimé !');
         return $this->redirectToRoute('app_home');
     }
 

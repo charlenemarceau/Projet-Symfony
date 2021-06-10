@@ -39,6 +39,10 @@ class ResetPasswordController extends AbstractController
      */
     public function request(Request $request, MailerInterface $mailer): Response
     {
+        if ($this->getUser()) {
+            $this->addFlash('error', 'Vous êtes déjà connecté');
+            return $this->redirectToRoute('app_home');
+        }
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
@@ -114,7 +118,7 @@ class ResetPasswordController extends AbstractController
             // Encode the plain password, and set it.
             $encodedPassword = $passwordEncoder->encodePassword(
                 $user,
-                $form->get('plainPassword')->getData()
+                $form->get('newPassword')->getData()
             );
 
             $user->setPassword($encodedPassword);
@@ -123,7 +127,9 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Votre mot de passe a bien été réiniatilisé. Vous pouvez vous connecter avec votre nouveau mot de passe.');
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('reset_password/reset.html.twig', [

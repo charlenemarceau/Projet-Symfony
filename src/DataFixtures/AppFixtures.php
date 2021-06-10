@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use DateTime;
-use App\Entity\Menu;
 use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Category;
@@ -31,15 +30,6 @@ class AppFixtures extends Fixture
             $cat-> setName($c);
             $manager->persist($cat);
             array_push($tabObjCategory,$cat);
-        }
-        $menus = ['Entrée', 'Plat', 'Dessert'];
-        $tabObjMenu = [];
-
-        foreach($menus as $m) {
-            $menu = new Menu;
-            $menu-> setName($m);
-            $manager->persist($menu);
-            array_push($tabObjMenu,$menu);
         }
 
             // $product = new Product();
@@ -90,8 +80,6 @@ class AppFixtures extends Fixture
               5.Continuez tant qu'il reste de la pâte, puis servez les galettes accompagnées de salade verte.")
             ->setCreatedAt(new DateTime('Europe/Paris'))
             ->setCategory($tabObjCategory[0])
-            ->setMenu($tabObjMenu[0])
-            ->setCatchline('blablabla')
             ->setUser($user1)
             ->setImageFile();
         $manager->persist($recipe);
