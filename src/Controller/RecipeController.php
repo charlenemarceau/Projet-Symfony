@@ -92,7 +92,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="recipe_delete", methods={"POST"})
+     * @Route("/{id}", name="recipe_delete", methods={"DELETE"})
      * @Security("is_granted('RECIPE_DELETE', recipe)")
      */
     public function delete(Request $request, Recipe $recipe): Response

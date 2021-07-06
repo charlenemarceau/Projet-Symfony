@@ -15,9 +15,27 @@
     </div>
 
     <a href="{{ path('app_home') }}" class="btn mb-3" style="background-color: #d4ffb0;">Retour</a>
-    
+{#     
 
-
+{{ form_start(registrationForm) }}
+                    <div class="row">
+                    <div class="col-md-6">
+					{{ form_row(registrationForm.firstName) }}
+                    </div>
+                    <div class="col-md-6">
+					{{ form_row(registrationForm.lastName) }}
+                    </div>
+                    </div>
+					{{ form_row(registrationForm.email) }}
+					{{ form_row(registrationForm.plainPassword, {
+                        label: 'Password' }) }}
+					<div class="my-2">
+						{{ form_row(registrationForm.agreeTerms) }}
+					</div>
+					<button type="submit" class="btn btn-primary mt-3">Register</button>
+                    <p class="text-center mt-5 mb-3 text-muted">
+                    Already have an account ? <a href="{{ path( 'app_login')}}">Log in</a></p>
+					{{ form_end(registrationForm) }} #}
     </div>
     </div>
 {% endblock %}
