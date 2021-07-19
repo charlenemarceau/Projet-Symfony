@@ -27,9 +27,9 @@ class RecipeVoter extends Voter
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case 'RECIPE_EDIT':
-                return $user->isVerified() && $user == $subject->getUser();
+                return $user == $subject->getUser();
             case 'RECIPE_DELETE':
-                return $user->isVerified() && $user == $subject->getUser();
+                return $user == $subject->getUser();
         }
 
         return false;

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Un compte utilise déjà cette adresse email")
  */
 class User implements UserInterface
 {
@@ -63,11 +63,7 @@ class User implements UserInterface
      */
     private $recipes;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isVerified = false;
-
+    
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -199,7 +195,8 @@ class User implements UserInterface
 
     public function removeRecipe(Recipe $recipe): self
     {
-        if ($this->recipes->removeElement($recipe)) {
+        if ($this->recipes->contains($recipe)) {
+            $this->recipes->removeElement($recipe);
             // set the owning side to null (unless already changed)
             if ($recipe->getUser() === $this) {
                 $recipe->setUser(null);
@@ -214,16 +211,6 @@ class User implements UserInterface
         return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
 
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
 
 }

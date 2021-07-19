@@ -36,7 +36,7 @@ class RecipeController extends AbstractController
     /**
      * @Route("/new", name="recipe_new", methods={"GET","POST"})
      * 
-     * @Security("is_granted('ROLE_USER') && user.isVerified()")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function new(Request $request, UserRepository $userRepository): Response
     {
@@ -97,7 +97,7 @@ class RecipeController extends AbstractController
      */
     public function delete(Request $request, Recipe $recipe): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->request->get('csrf_token'))) {
+        if ($this->isCsrfTokenValid('recipe_deletion_'.$recipe->getId(), $request->request->get('csrf_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($recipe);
             $entityManager->flush();
