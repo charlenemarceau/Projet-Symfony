@@ -22,7 +22,7 @@
 						</div>
 						<div class="mv-100 overflow-hidden">
 							<a href="{{ path('recipe_show', {'id': recipe.id}) }}">
-								{# <img src="{{ asset('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img"> #}
+								{# <img src="{{ asset ('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img"> #}
 								<img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_medium')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top">
 							</a>
 							<h5 class="mt-2">{{ recipe.name }}</h5>
