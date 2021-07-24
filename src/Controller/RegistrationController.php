@@ -5,19 +5,30 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 // use App\Security\EmailVerifier;
-use App\Security\LoginFormAuthenticator;
+use App\Repository\CategoryRepository;
 // use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Security\LoginFormAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 // use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 // use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+
+/**
+ * @Route("/recipe")
+ */
 class RegistrationController extends AbstractController
 {
+    private $categories;
+
+    function __construct(CategoryRepository $repo)
+    {
+        $this->categories = $repo->findAll();
+    }
     /**
      * @Route("/register", name="app_register")
      */
@@ -57,6 +68,8 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'categories'=> $this->categories
+
         ]);
     }
       
