@@ -81,7 +81,7 @@ class AppFixtures extends Fixture
             ->setCreatedAt(new DateTime('Europe/Paris'))
             ->setCategory($tabObjCategory[0])
             ->setUser($user1)
-            ->setImageFile("../public/img/recettes/galette-de-pommes-de-terre.jpeg");
+            ->setImageFile();
         $manager->persist($recipe);
 
         $manager->flush();
