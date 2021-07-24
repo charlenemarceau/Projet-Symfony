@@ -11,8 +11,8 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RecipeType extends AbstractType
@@ -36,7 +36,9 @@ class RecipeType extends AbstractType
             ->add('instructions', TextareaType::class, [
                 'label'=>"Instructions",
             ])
-            ->add('cook_time')
+            ->add('cook_time', IntegerType::class, [
+                'label' => "Temps de préparation"
+            ])
             ->add('category', EntityType::class, [
                 'label'=>"Catégorie",
                 "class" => Category::class,
