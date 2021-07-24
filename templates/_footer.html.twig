@@ -2,15 +2,13 @@
 <div class="row">
         <div class="left col-md-4">
             <ul>    Catégories
+        {% for c in categories %}
                 <li>
-                <a href="">Vegan</a>
+                <a href="{{ path('app_recipe_category', {'id': c.id} ) }}">{{c.name}}</a>
+          {# <a class="dropdown-item" href="{{ path('app_recipe_category', {'id': c.id} ) }}">{{cat.name}}</a> #}
                 </li>
-                <li>
-                <a href="">Végétarien</a>
-                </li>
-                <li>
-                <a href="">Pescovégétarien</a>
-                </li>
+        {% endfor %}
+        
             </ul>
         </div>
         <div class="right col-md-6">

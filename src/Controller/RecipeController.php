@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Form\RecipeType;
 use App\Repository\UserRepository;
 use App\Repository\RecipeRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class RecipeController extends AbstractController
 {
+    private $categories;
+
+    function __construct(CategoryRepository $repo)
+    {
+        $this->categories = $repo->findAll();
+    }
     
     public function __toString() {
         return $this->name;
@@ -30,6 +37,7 @@ class RecipeController extends AbstractController
     {
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
+            'categories'=> $this->categories
         ]);
     }
 
@@ -56,6 +64,7 @@ class RecipeController extends AbstractController
         return $this->render('recipe/new.html.twig', [
             'recipe' => $recipe,
             'form' => $form->createView(),
+            'categories'=> $this->categories
         ]);
     }
 
@@ -66,6 +75,7 @@ class RecipeController extends AbstractController
     {
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
+            'categories'=> $this->categories
         ]);
     }
 
@@ -88,6 +98,7 @@ class RecipeController extends AbstractController
         return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form->createView(),
+            'categories'=> $this->categories
         ]);
     }
 
