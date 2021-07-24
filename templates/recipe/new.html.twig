@@ -5,13 +5,13 @@
 {% block body %}
     <div class="row mt-5">
         <div class="col-md-6 mx-auto">
-    <h1 class="mt-5">Partage une recette</h1>
-
-    {{ include('recipe/_form.html.twig') }}
-        
+            <h1 class="mt-5 title-page mb-3">Partage une recette</h1>
+            {{ include('recipe/_form.html.twig') }}
         </div>
     </div>
-    <div class="mx-auto">
+
+    <div class="d-flex justify-content-center">
     <a href="{{ path('app_home') }}" class="btn mb-3" style="background-color: #d4ffb0;">Retour</a>
     </div>
+
 {% endblock %}

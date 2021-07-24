@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Veggie&Cook
+{% block title %}Veggie&amp;Cook
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,8 @@
 
 
 <section id="recette" class="recipe-section">
-<h1 class="pb-4 recipes-title text-center pt-5">Les Recettes</h1>
+<p class="mt-2 mb-2">Veggie &amp; Cook est un site de recettes collaboratif. <br/> Venez partager vos recettes végétariennes, vegan et pescovégétarienne. </p>
+<h1 class="pb-4 recipes-title text-center pt-3">Les Recettes</h1>
 	{% for row in recipes|batch(3) %}
 		<div class="row recipe-section-row mb-5 d-flex justify-content-center">
 			{% for recipe in row %}
@@ -22,12 +23,10 @@
 						</div>
 						<div class="mv-100 overflow-hidden">
 							<a href="{{ path('recipe_show', {'id': recipe.id}) }}">
-								<img src="{{ asset ('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img">
-								{# <img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_medium')) }}" alt="{{ recipe.name }}" class="recipe-img w-100 rounded-top"> #}
+								<img src="{{ asset ('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img w-100 rounded-top" style=" width: 300px; height:350">
 							</a>
 							<h5 class="mt-2">{{ recipe.name }}</h5>
-							<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn mb-3" style="background-color: #d4ffb0;">Plus de détails</a>
-							{# <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn" style="background-color: #d6c0d8;">Modifier</a> #}
+							<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn mb-3" style="background-color: #d4ffb0;">Voir la recette</a>
 						</div>
 					</article>
 				</div>

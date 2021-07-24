@@ -29,9 +29,14 @@ font-family: 'Montserrat', sans-serif;*/
 
 
 .navbar-brand {
+    
     font-family: 'Fredericka the Great', cursive;
 }
 
+.title-page {
+    font-family: 'Fredericka the Great', cursive;
+    
+}
 .recipes-title {
     font-family: 'Fredericka the Great', cursive;
     font-size: 50px;
@@ -65,6 +70,13 @@ font-family: 'Montserrat', sans-serif;*/
     margin-bottom: 5px;
 }
 
+.btn-delete  {
+        background-color: #E9E8EA;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+}
 .mdp {
     height: 73vh;
     padding-top: 10vh;

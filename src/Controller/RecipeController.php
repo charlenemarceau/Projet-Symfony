@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/recipe")
+ * @Route("/")
  */
 class RecipeController extends AbstractController
 {
@@ -119,4 +119,6 @@ class RecipeController extends AbstractController
             'categories' => $this->categories
         ]);
     }
+
+    
 }

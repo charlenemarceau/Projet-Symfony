@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	{# <h1>Recipe</h1> #}
 
 	<div class="row recipe-show mt-5">
 		<div class="col-md-8 mx-auto">
@@ -12,12 +11,12 @@
 				<div class="text-break p-3">
 					<h1 class="text-center mt-3 recipes-title">{{ recipe.name }}</h1>
 					<div class="mt-5 mb-5 d-flex justify-content-center">
-						<img src="{{ (recipe.imageName ? vich_uploader_asset(recipe) | imagine_filter('squared_thumbnail_large')) }}" alt="{{ recipe.name }}" class="rounded mx-auto">
+						<img src="{{ asset ('/uploads/recipes/' ~ recipe.imageName )}}" alt="" class="recipe-img rounded-top" style=" width: 300px;">
 					</div>
 					<div class="row">
 						<div class="col-md-8">
 							<h4>Les ingrédients</h4>
-							<p>{{ recipe.ingredients }}</p>
+							<p>{{ recipe.ingredients | nl2br }}</p>
 						</div>
 						<div class="col-md-4 timer">
 							<h6>Temps de préparation</h6>
@@ -26,7 +25,7 @@
 					</div>
                     <h4>Préparation</h4>
                     <div class="text-justify d-flex mt-3">
-					<p>{{ recipe.instructions }}</p>
+					<p>{{ recipe.instructions | nl2br }}</p>
                     </div>
                     <div class="text-muted ml-2">
 					<time>Crée le
@@ -43,20 +42,22 @@
 	<div class="row">
 	<div class="text-center">
 
-	<a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn btn-success my-5">Modifier</a>
-	<a href="{{path('app_home')}}" class="btn btn-danger my-5"> Retour</a>
-	{# {{ include('recipe/_delete_form.html.twig') }} #}
-    {# <form action="{{path('recipe_delete', {id: recipe.id}) }}" method="post">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="submit" value="Delete">
-	</form> #}
+	{% if app.user == recipe.user %}
+        <a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="btn" style="background-color: #EE8F40;">Modifier</a>
 
-	<a href="#" onclick="event.preventDefault(); confirm('Etes-vous sûre de vouloir supprimer cette recette ?') && document.getElementById('js-recipe-delete-form').submit();" class="btn btn-light">Delete</a>
+		<a href="#" onclick="event.preventDefault(); confirm('Etes-vous sûre de vouloir supprimer cette recette ?') && document.getElementById('js-recipe-delete-form').submit();" class="btn btn-delete">Supprimer</a>
+            <form id="js-recipe-delete-form" action="{{ path('recipe_delete', {id: recipe.id}) }}" method="post" class="btn mb-3" style="display: none;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token('recipe_deletion_' ~ recipe.id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+            </form>
+		</br></br>
+		<a href="{{ path('app_home') }}" class="btn mb-3" style="background-color: #d4ffb0;">Retour</a>
+    {% else %}
+        </br>
+		<a href="{{ path('app_home') }}" class="btn mb-3" style="background-color: #d4ffb0;">Retour</a>
+    {% endif %} 
 
-                        <form id="js-recipe-delete-form" action="{{ path('recipe_delete', {id: recipe.id}) }}" method="post" style="display: none;">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token('recipe_deletion_' ~ recipe.id) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                        </form> 
+	
 	</div>
 
 	</div>

@@ -1,8 +1,8 @@
-<form method="post" action="{{ path('recipe_delete', {'id': recipe.id}) }}" onsubmit="return confirm('Etes-vous sûre de vouloir supprimer cette recette ?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ recipe.id) }}">
-    <button class="btn btn-danger">Supprimer</button>
-</form>
+<a href="#" onclick="event.preventDefault(); confirm('Etes-vous sûre de vouloir supprimer cette recette ?') && document.getElementById('js-recipe-delete-form').submit();" class="btn btn-delete">Supprimer</a>
+            <form id="js-recipe-delete-form" action="{{ path('recipe_delete', {id: recipe.id}) }}" method="post" class="btn mb-3" style="display: none;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token('recipe_deletion_' ~ recipe.id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+            </form>
 {# <form class="deleteform" action="{{ path('app_todo_delete_csrf', { id: todo.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
