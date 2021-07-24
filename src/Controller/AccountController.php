@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ChangePasswordFormType;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class AccountController extends AbstractController
 {
+    private $categories;
+
+    function __construct(CategoryRepository $repo)
+    {
+        $this->categories = $repo->findAll();
+    }
+    
     /**
      * @Route("/account", name="app_account", methods={"GET"})
      * @isGranted("ROLE_USER")
@@ -26,6 +34,8 @@ class AccountController extends AbstractController
     {
         return $this->render('account/showAccount.html.twig', [
             'controller_name' => 'AccountController',
+            'categories'=> $this->categories
+
         ]);
     }
 
@@ -52,7 +62,9 @@ class AccountController extends AbstractController
         return $this->redirectToRoute('app_account');
         }
         return $this->render('account/change_password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categories'=> $this->categories
+
         ]);
     }
 

@@ -1,7 +1,8 @@
 <div class="footer">
 <div class="row">
         <div class="left col-md-4">
-            <ul>    Catégories
+            Catégories
+            <ul>
         {% for c in categories %}
                 <li>
                 <a href="{{ path('app_recipe_category', {'id': c.id} ) }}">{{c.name}}</a>
